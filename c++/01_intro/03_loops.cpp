@@ -1,8 +1,8 @@
 #include <iostream>
 
 int main() {
-  for (int i = 0; i < 10; ++i) {
-    std::cout << i << " ";  // if the action is just one line, {} can be omitted
+  for (int i = 0; i < 10; ++i)  { //pre increment is better then post increment
+    std::cout << i << " | ";  // if the action is just one line, {} can be omitted
   }
 
   // std::cout << i << '\n';	// error, i is out of scope
