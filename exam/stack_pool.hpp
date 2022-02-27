@@ -28,11 +28,11 @@
     return tmp;
   }
 
-   friend bool operator==(const _iterator& x, const _iterator& y) {
+   friend bool operator==(const _iterator& x, const _iterator& y) noexcept {
     return (x.ptr_stack_pool  == y.ptr_stack_pool && x.stack == y.stack);
   }
 
-  friend bool operator!=(const _iterator& x, const _iterator& y) {
+  friend bool operator!=(const _iterator& x, const _iterator& y) noexcept {
     return !(x == y);
   }
  };
@@ -69,9 +69,9 @@ class stack_pool{
   }
  public:
 
-  stack_pool() : free_nodes{end()} {};
+  stack_pool() noexcept : free_nodes{end()} {};
   explicit stack_pool(size_type n): free_nodes{end()} { pool.reserve(n);  } // reserve n nodes in the pool
-  ~stack_pool() = default;
+  ~stack_pool() noexcept = default;
 
 
 
@@ -80,15 +80,15 @@ class stack_pool{
 
 
   iterator begin(stack_type x)  { return iterator{this, x}; }
-  iterator end(stack_type)  { return iterator{this,end()}; } 
+  iterator end(stack_type)  noexcept { return iterator{this,end()}; } 
   
 
   const_iterator begin(stack_type x) const { return const_iterator{this, x}; }
-  const_iterator end(stack_type) const { return const_iterator{this,end()}; }
+  const_iterator end(stack_type) const noexcept { return const_iterator{this,end()}; }
   
 
   const_iterator cbegin(stack_type x) const { return const_iterator{this, x}; }
-  const_iterator cend(stack_type) const { return const_iterator{this,end()}; }
+  const_iterator cend(stack_type) const noexcept { return const_iterator{this,end()}; }
 
 
   stack_type new_stack() noexcept { return end(); } 
